@@ -19,12 +19,14 @@ const keywordOptions = Keywords.map(keyword => (
 
 function App() {
   const [movieList, setMovieList] = useState([]);
+  const [showText, setShowText] = useState(false);
   const [movieInfo, setMovieInfo] = useState({
     genre: "",
     keyword: "",
     release: "",
     actor: ""
   });
+
 
   function setMovies(newMovie) {
     const checkList = movieList.filter(item => item.id === newMovie.results[0].id);
@@ -33,6 +35,7 @@ function App() {
       setMovieList([...movieList, newMovie.results[0]]);
     }
   }
+
 
   function removeFromList(id) {
     setMovieList(prevItems => prevItems.filter(item => item.id !== id))
@@ -87,14 +90,22 @@ function App() {
   }
 
   function handleSubmit(e) {
-    console.log(movieInfo);
+    //console.log(movieInfo);
     searchMovie();
     e.preventDefault();
   }
-  console.log(movieList);
+  const textList = movieList.slice(0).reverse().map(item => (
+    <div>
+      <p>{item.title}</p>
+    </div>
+  ));
+
+  //console.log(movieList);
+  
   return (
     <div>
       <h1>Movie Recommendations</h1>
+  
       <form onSubmit={handleSubmit}>
         <FormLabel>
           Pick your favorite genre:
@@ -123,6 +134,10 @@ function App() {
         </FormLabel><br/>
         <Input type="submit" value="Submit" />
       </form>
+      <Button onClick={() => setShowText(!showText)} size="small" color="primary">
+        Show Text List
+      </Button>
+      <div>{showText && textList}</div>
       {movieItemElements}
     </div>
   )
