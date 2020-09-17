@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Select, FormLabel, Input  } from '@material-ui/core';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import { Button, Card, CardActionArea, CardActions,  Select, CardContent, Typography, FormLabel, Input  } from '@material-ui/core';
+
 import Genres from "./genres.json";
 import Actors from "./actors.json";
 import Keywords from "./keywords.json";
+
 const apiKey = '95ae7f5873f8ed7d551d67d546cbfbf0';
+
 const genreOptions = Genres.map(genre => (
     <option key={genre.id} value={genre.id}>{genre.name}</option>
 ));
@@ -46,6 +45,7 @@ function App() {
         <img
           src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           style={{height:"140px"}}
+          alt="movie poster"
         />
         <CardContent>
           <Typography component="h2">
