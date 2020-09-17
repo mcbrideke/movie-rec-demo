@@ -101,7 +101,7 @@ function App() {
   ));
 
   //console.log(movieList);
-  
+
   return (
     <div>
       <h1>Movie Recommendations</h1>
@@ -122,6 +122,7 @@ function App() {
         <FormLabel>
           New movie or classic:
           <Select name="release" value={movieInfo.release} onChange={handleChange}>
+            <option value=""></option>
             <option value={`primary_release_date.gte=2000-01-01T00:00:00.000Z`}>new</option>
             <option value={`primary_release_date.lte=2000-01-01T00:00:00.000Z`}>classic</option>
           </Select>
